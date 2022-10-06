@@ -14,9 +14,7 @@ function getRandomItem(list) {
   return list[randomInt(list.length)]
 }
 
-
 function generatePassword() {
-
 
   while (true) {
 
@@ -37,7 +35,6 @@ function generatePassword() {
     } 
 
   }
-
 
   var userUppercase = window.confirm("Would you like to include uppercase letters in your password?")
   var userLowercase = window.confirm("Would you like to include lowercase in your password?")
@@ -84,7 +81,6 @@ function generatePassword() {
   }
 
   return makePassword
-
 }
 
 

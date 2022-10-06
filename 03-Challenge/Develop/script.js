@@ -1,6 +1,20 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+function randomInt(min, max) {
+  if (!max) {
+    max = min
+    min = 0
+  }
+  var rand = Math.random()
+  return Math.floor(min*(1 -rand) + rand*max)
+}
+
+function getRandomItem(list) {
+  return list[randomInt(list.length)]
+}
+
+
 function generatePassword() {
 
 
@@ -30,30 +44,48 @@ function generatePassword() {
   var userNumbers = window.confirm("Would you like to include numbers in your password?")
   var userSymbols = window.confirm("Would you like to include symbols in your password?")
 
-  var UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
-  var LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
-  var NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
-  var SYMBOl_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
-    arrayFromLowToHigh(58, 64)
-  ).concat(
-    arrayFromLowToHigh(91, 96)
-  ).concat(
-    arrayFromLowToHigh(123, 126)
-  )
-  
+  var upperCase = []
+  var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  var numberList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  var symbolList = ["!", "@", "#", "$", "%", "^", "&", "*"]
 
-  var optionsSelected = []
+  var passwordCharacters = []  
 
-}
-
-function arrayFromLowToHigh(low, high) {
-  const array = []
-  for (let i = low; i <= high; i++) {
-    array.push(i)
+  for (var i = 0; i < lowerCase.length; i++) {
+    upperCase[i] = lowerCase[i].toUpperCase()
   }
-  return array
-}
+  
+  if (userUppercase === true) {
+    passwordCharacters.push(upperCase)
+  }
 
+  if (userLowercase === true) {
+    passwordCharacters.push(lowerCase )
+  }
+
+  if (userSymbols === true) {
+    passwordCharacters.push(numberList)
+  }
+
+  if (userLowercase === true) {
+    passwordCharacters.push(symbolList)
+  }
+
+  if (passwordCharacters.length === 0) {
+    passwordCharacters.push(lowerCase)
+  }
+
+  var makePassword = ""
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randomList = getRandomItem(passwordCharacters)
+    var randomChar = getRandomItem(randomList)
+    makePassword += randomChar
+  }
+
+  return makePassword
+
+}
 
 
 // Write password to the #password input
